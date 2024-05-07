@@ -154,7 +154,7 @@ public class DraftController {
 		}
 		
 		model.addAttribute("result", msg);
-		model.addAttribute("path", "/draft/mydraftlist");
+		model.addAttribute("path", "/receive/inbox");
 		}else if(draftVO.getDraft_category() == 1) {
 			
 		}else if(draftVO.getDraft_category() == 2) {

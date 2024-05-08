@@ -58,8 +58,8 @@
                    aria-expanded="false"><i class="icon icon-app-store"></i><span
                     class="nav-text">영업팀</span></a>
                 <ul aria-expanded="false">
-                    <li><a href="/customer/list">거래처관리</a></li>
-                    <li><a href="/schedule/list">현장일정관리</a></li>
+                    <li><a href="/customer/sales_list">거래처관리</a></li>
+                    <li><a href="/schedule/sales_list">현장일정관리</a></li>
                     <li><a href="/chart/main">매출관리</a></li>
 
                 </ul>

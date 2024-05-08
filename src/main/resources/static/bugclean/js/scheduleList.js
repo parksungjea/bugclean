@@ -45,14 +45,11 @@ let base_selected = document.getElementsByClassName("base_selected");
 let input_carAllocation = document.getElementById("input_carAllocation");
 // 
 
-inputSelectCustomerName.addEventListener("change",function(){
-    console.log("input title = ",inputSelectCustomerName.value);    
+inputSelectCustomerName.addEventListener("change",function(){  
     inputTitle.value = inputSelectCustomerName.value;
-    console.log(inputTitle.value);
 })
 
 inputSelect.addEventListener("change",function(){
-    console.log("input select = ", inputSelect.value )
     inputSales.value = inputSelect.value;
 })
 
@@ -62,7 +59,6 @@ inputSelectEMP.addEventListener("change",function(){
 
 // 이벤트 추가 함수 
 function create_sch(date){
-    console.log("date =  ",date);
     for(let i=0; i<inputRadio.length;i++){
         if(inputRadio[i].checked == true){
             radioValue = inputRadio[i].value;
@@ -113,18 +109,13 @@ document.addEventListener('DOMContentLoaded', function() {
         },
         
         eventContent: function(arg) {
-            console.log(arg);
             return {
               html:  `<div style="text-decoration: ${arg.event.classNames[0]}; color: ${arg.textColor};">` + '<b>' + arg.event.title+arg.event.startStr.substring(11,16) + '</b></div>'
             };
           },
         eventDrop: function(info) {
-            console.log(info);
                 alert("일정을 변경했습니다!\n"+info.event.startStr.substring(0,10)+"    " +info.event.startStr.substring(11,19) ); // 이벤트를 이동할 때 알림창을 띄울 수 있습니다.
-                console.log(info.event.startStr.substring(0,10) +" " +info.event.startStr.substring(11,19))
-                console.log(info.event.id.substring(info.event.id.lastIndexOf('-')+1,info.event.length))
-                console.log(info.event.endStr.substring(0,10) +" "+info.event.endStr.substring(11,19))
-                fetch("/schedule/updateSchDrag",{
+                 fetch("/schedule/updateSchDrag",{
                     method :"POST",
                     headers: {
                         "Content-Type": "application/json",
@@ -146,8 +137,6 @@ document.addEventListener('DOMContentLoaded', function() {
         }
         ,
         eventClick:function(info){
-            console.log("event Click");
-            console.log("info = " +info.event.title);
             openModal(info.event.title,info.event.start,info.event.id)
         }
 
@@ -208,14 +197,11 @@ modalTitle.innerText="일정 등록";
             inputSelect_emp.value="";
             
 for(let i=0;i<inputRadio.length;i++){
-    console.log("checked radio console")
     if( inputRadio[i].value =='일반' ){
-        console.log("success radio 일반 " , inputRadio[i].value)
         inputRadio[i].checked = true;
     } 
 }
 
-console.log(" date = == " +info.dateStr)
 span_start_time.innerHTML = info.dateStr;
 //일정추가
 
@@ -289,7 +275,6 @@ modalTitle.innerText="일정 확인";
                 })
         }).then(res=>res.json())
         .then(res=>{
-            console.log("res===",res);
             inputEnd.value = res.end_Time.substring(11);
             inputStart.value = res.start_Time.substring(11);
             inputAddress.value = res.address;
@@ -299,7 +284,6 @@ modalTitle.innerText="일정 확인";
             inputTitle.value = res.business_Name;
             radioValue = res.site_Type;
             schManageCode = res.manage_Code;
-            console.log(schManageCode)
             if(schManageCode != null) {
                     fetch("/general/getCarNumber",{
                     method : "POST",
@@ -312,7 +296,6 @@ modalTitle.innerText="일정 확인";
                     })
                 }).then(res=>res.json())
                 .then(res => {
-                    console.log("res === = == = =" , res);
                     
                         if(res.pro_status == 1){
                             input_carAllocation.value = '배차 신청중';
@@ -322,7 +305,7 @@ modalTitle.innerText="일정 확인";
 
                 })
                 }else{
-                    console.log("미정이")
+                   
                   
                     
                     input_carAllocation.value="미정";
@@ -350,13 +333,11 @@ modalTitle.innerText="일정 확인";
 
 
             for(let i=0;i<inputRadio.length;i++){
-                console.log("radio",inputRadio[i].value + " //// site_type == ", res.site_Type)
                 if(inputRadio[i].value == res.site_Type){
                     inputRadio[i].checked= true;
                 }
             }
             let allocationState  = res.manage_Code;
-            console.log("inputStart === " , inputStart.value)
             fetch("/general/getUsableList",{
                 method : "POST",
                 headers: {
@@ -368,15 +349,12 @@ modalTitle.innerText="일정 확인";
                 })
             }).then(res=>res.json())
             .then(res=>{
-                console.log("사용가능차량",res);
                 if(allocationState == null){
-                    console.log("null입니당")
                     carAllocation.innerHTML = `<option id ="carSelectBase" value="">배차요청</option>`;
                     res.forEach(element => {
                         carAllocation.innerHTML += `<option class="car_choice" value="${element.car_num} ${element.car_code}">${element.car_num}</option>`
                      });
                 }else{
-                    console.log("null이 아닙ㅂ니당",allocationState);
                     fetch("/general/getAllocationState",{
                         method : "POST",
                         headers: {
@@ -387,7 +365,6 @@ modalTitle.innerText="일정 확인";
                         })
                     }).then(res=>res.json())
                     .then(res=>{
-                      console.log("배차 정보 확인 res = >>",res);  
                       carAllocation.innerHTML = `<option id ="carSelectBase" value="${res.CAR_NUM} ${res.CAR_CODE} ">${res.CAR_NUM}</option>`;
                       if(res.BOOKING_AGREE == '0'){
                         input_carAllocation.value = "배차 신청중"
@@ -451,7 +428,6 @@ modalTitle.innerText="일정 확인";
         })
 		
 		 update_sch_btn.addEventListener("click",function(){
-                console.log("test === " , date + " "+inputStart.value)
 
                 for(let i=0; i<inputRadio.length;i++){
                     if(inputRadio[i].checked == true){
@@ -481,7 +457,6 @@ modalTitle.innerText="일정 확인";
                 .then(res=>res.json())
                 .then(res=>{
                     if(res>0){
-                        console.log("res update fetch === ", res);
                         openWindow(); 
                     }
                     else{
@@ -490,16 +465,9 @@ modalTitle.innerText="일정 확인";
             })
         })
 		
-		
-    console.log("last index of ===== ",id.lastIndexOf('-'));
-    console.log("id substr == ", id.substring(id.lastIndexOf('-')-10,id.lastIndexOf('-')))
-    console.log("id length = ",id.length);
-    console.log("id substring id ==== ",id.substring(id.lastIndexOf('-')+1,id.length));
+	
     span_start_time.innerHTML = id.substring(id.lastIndexOf('-')-10,id.lastIndexOf('-'));   
   
-
-console.log("date"+date);
-console.log("id"+id);
 //일정추가
 create_sch_btn.classList.add("display_none");
 
@@ -527,7 +495,6 @@ calendar.unselect();
 // 배차 요청 셀렉트박스
 let carAllocation = document.getElementById("carAllocation");
     carAllocation.addEventListener("change",function(){
-        console.log("현장 아이디 확인  ==== " , sch_ID);
         changeSelect(sch_ID);
     })
 
@@ -536,7 +503,6 @@ function changeSelect(sch_ID){
     let car_temp = carAllocation.value.substring(0,7);
     let car_number = carAllocation.value.substr(7);
     if(car_temp.value != ""){
-        console.log(car_number +"==== car number" )
         let check = confirm(car_temp+" 차량으로 배차요청 하시겠습니까?");
         if(check == false){
             carAllocation.selectedIndex=0;
@@ -559,7 +525,6 @@ function changeSelect(sch_ID){
             })
             .then(res => res.json())
             .then(res => {
-                console.log("car_manage 배차 요청 ===",res);
                 car_manageCode = res.manage_code
                 fetch("/schedule/carAllocation",{
                     method : "POST",
@@ -572,7 +537,6 @@ function changeSelect(sch_ID){
                     })
                 }).then(res=>res.json())
                 .then(res => {
-                    console.log("sch 배차 정보 상태 갱신 === ",res);
                     
                     closeModal();
                 })
@@ -590,7 +554,6 @@ function changeSelect(sch_ID){
 //필터값 변경
 function filter_name(e) {
     if(e.keyCode == 13){
-        console.log("enter 입력");
         openWindow(sch_Filter_Input.value);
     }
 }
@@ -598,11 +561,9 @@ function filter_name(e) {
 // 페이지 로드 시 db에서 값 받아오기
 function openWindow(e){
     let param
-    console.log("e === == " , e);
     param = e;
     if(e == null || e =='undefined'){
         param  = "";
-        console.log("null or undef")
     } 
     fetch("/schedule/getList?search="+param,{
         method : "GET"
@@ -613,22 +574,19 @@ function openWindow(e){
             event.remove();
             });
 
-            console.log("h2");
-            console.log("test = ",res);
             res.forEach(element => {
-               console.log("start = ", element.START_TIME);
                start_first = element.START_TIME.substr(0,10);
-               console.log("start_first = ", start_first);
-               console.log("site_Num === ", element.SITE_NUM)
                let start_last = element.START_TIME.substring(11,19);
-                console.log("start_last >> ", start_last);
                let temp =  ( parseInt(start_last.substring(0,2)) + 9 ) % 24 
-               console.log("Temp ==> ", temp)
                if(temp<10){
 				   temp = "0" + temp;
 			   }
                start_last = temp + start_last.substring(2);
-                if(element.SITE_TYPE == '긴급'){
+               if(element.SITE_TYPE == '취소'){
+                color = 'gray';
+                textDeco = "line-through";
+                } 
+               else if(element.SITE_TYPE == '긴급'){
                     color = "red";
                     textDeco = "none";
                 } 
@@ -643,10 +601,7 @@ function openWindow(e){
                     color = "black";
                     textDeco = "none"
                 } 
-                else if(element.SITE_TYPE == '취소'){
-                    color = 'gray';
-                    textDeco = "line-through";
-                }
+                
                 if (element.SITE_TYPE == '완료'){
                     color = 'blue';
                     textDeco = 'none';
@@ -658,7 +613,6 @@ function openWindow(e){
 				}else{
 					event_title = element.BUSINESS_NAME
 				}
-                console.log("color == ", color);
                   calendar.addEvent({
                    title : event_title,
                    start : start_first +"T"+ start_last,

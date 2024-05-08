@@ -48,7 +48,6 @@ for(let i=0; i<modi_tr.length;i++){
 
     
     modi_tr[i].addEventListener("click",function(event){
-        console.log("event 진입 " + i );
             //A링크를 클릭했을때는 모달창이 나오지않는다.
             if(event.target.tagName =='A' ){
               event.stopPropagation();
@@ -57,7 +56,6 @@ for(let i=0; i<modi_tr.length;i++){
             customer = td_customer_num[i].getAttribute("data-customernum");
             customerType = td_customer_type[i].getAttribute("data-customertype");
             type.value = customerType;
-            console.log("type = " + type.value);
             if(type.value=="개인"){
               modal_bn_name.style.display="none";
               modal_manager_name.style.display="none";
@@ -72,9 +70,6 @@ for(let i=0; i<modi_tr.length;i++){
               modal_ce_phone_span.innerHTML = "대표자 전화번호"
             }
 
-
-            console.log("customerNum = "+customer);
-            console.log("modal 진입 ");
 
             modal.style.display="block";
 
@@ -100,13 +95,10 @@ for(let i=0; i<modi_tr.length;i++){
 
 inputSelect.addEventListener("change",function(){
   modal_sales_name_in.value = inputSelect.value
-  console.log(modal_sales_name_in.value);
 })
 
 // 수정 완료 
 function modiComplate(){
-    console.log("fetch 진입")
-    console.log(modal_bn_name_in.value)
     fetch("/customer/update",{
         method : "post",
         headers: {

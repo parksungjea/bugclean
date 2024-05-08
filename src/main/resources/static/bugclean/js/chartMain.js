@@ -34,8 +34,6 @@ for(let i=1;i<=12;i++){
         })
     }).then(res=>res.json())
     .then(res=>{
-        console.log(i + " " +res);
-        console.log(typeof(res))
         if(i==1){
             january = res;
         }else if(i==2){

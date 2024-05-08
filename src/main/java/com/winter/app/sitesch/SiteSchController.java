@@ -43,7 +43,7 @@ public class SiteSchController {
 		
 	}
 	
-	@GetMapping("list")
+	@GetMapping({"list","sales_list"})
 	public void list( Model model,CarManageVO carManageVO ) throws Exception{
 	
 		List<EmployeeVO> ar = schService.getSales();
@@ -61,6 +61,9 @@ public class SiteSchController {
 		//model.addAttribute("list_car", ar_car);
 		
 	}
+	
+	
+	
 	
 	@PostMapping("create")
 	@ResponseBody

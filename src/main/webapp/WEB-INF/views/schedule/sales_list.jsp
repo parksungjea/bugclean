@@ -149,7 +149,7 @@
 							<input id="inputPrice" type="text" class="form-control" placeholder="단가를 입력하세요." >
 					  	</div>
 					  	
-						<c:if test="${info.DEP_NAME eq '현장팀' || info.DEP_NAME eq '사업부' }">
+						<c:if test="${info.DEP_NAME eq '현장팀' || info.DEP_NAME eq '사업부'}">
 								<button class="btn btn-light create mt-3" id="create_sch_btn">등록하기</button>
 							<div> 
 								<button type="button" class="btn btn-secondary updel mt-3" id="complate_sch_btn">완료하기</button>

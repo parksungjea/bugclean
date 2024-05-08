@@ -51,7 +51,6 @@ let isContentVisible = false;
 function getInfo(id){
 	
     sch_Id = id.substring(id.lastIndexOf('-')+1,id.length);
-    console.log("id====",sch_Id);
     fetch("/schedule/getSchedule",{
         method : "POST",
         headers: {
@@ -62,7 +61,6 @@ function getInfo(id){
             })
     }).then(res=>res.json())
     .then(res=>{
-        //console.log("res====",res);
 
         content.style.display = "block";
         
@@ -214,11 +212,9 @@ function getInfo(id){
 
 function openWindow(e){
     let param
-    console.log("e === == " , e);
     param = e;
     if(e == null || e =='undefined'){
         param  = "";
-        console.log("null or undef")
     } 
     fetch("/schedule/getList?search="+param,{
         method : "GET"
@@ -229,10 +225,7 @@ function openWindow(e){
              event.remove();
             });
 
-            console.log("h2");
-            console.log("test = ",res);
             res.forEach(element => {
-               console.log("start = ", element.start_Time);
                
                start_first = element.START_TIME.substr(0,10);
            
@@ -262,7 +255,6 @@ function openWindow(e){
 					event_title = element.BUSINESS_NAME
 				}
                 
-                console.log("color == ", color);
                   calendar.addEvent({
                    title : event_title,
                    start : start_first +"T"+ start_last,

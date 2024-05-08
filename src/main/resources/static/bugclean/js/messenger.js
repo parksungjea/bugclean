@@ -37,7 +37,6 @@ let obj = {};
 // })
 
 function chatRoom(e){
-    console.log("target == = ==  >> ",e.target.id);
     let empnum = e.target.id;
     let empnum2;
     let room_num;
@@ -58,7 +57,6 @@ function chatRoom(e){
             })
         }).then(res=>res.json())
         .then(res=>{
-            console.log("res=== > ",res)
             username1 = res.NAME;
             empnum2 = res.EMPLOYEE_NUM;
             
@@ -103,7 +101,6 @@ function chatRoom(e){
 //사원 이름 클릭시 사원 정보 모달창 띄우기
 let basicModal = document.getElementById("basicModal");
 async function emp_modal(e){
-    console.log("target.id === " , e.target.id);
     const response = await fetch("/chat/getEmpInfo",{
         method:"POST",
         headers: {
@@ -193,7 +190,6 @@ window.addEventListener("load",async function(){
 		        method : "GET"
 		    }).then(res=>res.text())
 		    .then(res=>{
-		        console.log("principal ==== " , res);
 		        getUserName = res;
 		        
 		        fetch("/chat/getEmpName",{
@@ -219,12 +215,10 @@ window.addEventListener("load",async function(){
 				  }).then(res=>res.json())
 				  .then(res=>{
 					  res.forEach(element => {
-						  console.log("PROFILE==> ",element.PROFILE)
 						  let profile = "/focus-bootstrap-main/theme/images/base_profile.png";
 						  
 						  if(element.PROFILE !=null){
 							  profile = "/files/profile/" + element.PROFILE
-							  console.log("not undefined ==> ", element.PROFILE);
 						  }
 						  messenger_msg_list.innerHTML += `<div style="color : black; margin-top : 3%;" id="${element.ROOM_NUM}" onclick="intoChatRoom(${element.ROOM_NUM})"> <div style="width:30%; display : inline-flex;"> <img style="border-radius : 50%; margin : auto;" width="50" height="50" id="user2_profile" src="${profile}"> </div>  <div id="msg${element.ROOM_NUM}" style="width:auto; display : inline-block;"><div> ${element.DEP_NAME} ${element.POS_NAME} ${element.NAME}<div></div> </div>`
 					  fetch("/chat/getLastMessage",{
@@ -238,7 +232,7 @@ window.addEventListener("load",async function(){
 							})
 					  }).then(res=>res.json())
 					  .then(res=>{
-						  console.log("res ==> ", res)
+                        
 						 document.getElementById(`msg${element.ROOM_NUM}`).innerHTML +=  `<div style="color : grey"> ${res.msg_contents}</div>` + `<div style="font-size : smaller">${res.msg_send_time}</div>`
 					  })
 					  })

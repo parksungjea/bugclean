@@ -54,7 +54,6 @@ let bn_kind_select = document.getElementById("bn_kind_select");
             ck_company.checked=true;
         }
         submit_check.value = "사업자";
-        console.log(submit_check.value);
 
         addr_person_in.disabled=true;
         person_name_in.disabled=true;
@@ -79,11 +78,9 @@ let bn_kind_select = document.getElementById("bn_kind_select");
         if(ck_company.checked){
             ck_company.checked=false;
         }
-        console.log("person = " + ck_person.checked);
         if(ck_person.checked){
             company1.classList.add("none");
             person1.classList.remove("none");
-            console.log("checked");
         }else{
             ck_person.checked=true;
             
@@ -104,7 +101,6 @@ let bn_kind_select = document.getElementById("bn_kind_select");
         postcode.value ="";
         detailAddress.value="";
         roadAddress.value="";
-        console.log(submit_check.value);
     }
     
    

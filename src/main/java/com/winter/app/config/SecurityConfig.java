@@ -63,17 +63,21 @@ public class SecurityConfig{
 											.requestMatchers("/employee/idSearchResult").permitAll()
 											.requestMatchers("/employee/idSearchPhone").permitAll()
 											.requestMatchers("/chat/**").permitAll()
+											.requestMatchers("/general/getUsableList","/general/getCarNumber","/general/getAllocationState","/general/carAllocation").hasAnyRole("BUSINESS","SALES","FIELD","CEO") // 현장,영업팀 스케쥴 관련
+											.requestMatchers("/general/**").hasAnyRole("GENERAL","SUPPORT", "CEO") //총무팀
+											.requestMatchers("/customer/list").hasAnyRole("FIELD","SALES","BUSINESS", "CEO") //영업팀
+											.requestMatchers("/customer/sales_list").hasAnyRole("SALES","FIELD","BUSINESS", "CEO") //영업팀
+											.requestMatchers("/schedule/list").hasAnyRole("FIELD","SALES","BUSINESS", "CEO") //스케쥴
+											.requestMatchers("/schedule/sales_list").hasAnyRole("SALES","FILED","BUSINESS","CEO") //스케쥴
+											.requestMatchers("/customer/**").hasAnyRole("FIELD","SALES","BUSINESS", "CEO") //영업팀
+											.requestMatchers("/hr/**").hasAnyRole("PERSON","SUPPORT", "CEO") //인사팀
+											
 											.requestMatchers("/employee/logout", "/employee/mypage",
 													"/employee/pwUpdate","/setAttendence","/setWorkOut", "/receive/inbox",
 													"/customer/**","/chat/**","/schedule/**","/chart/**",
-													"/draft/**")
+													"/draft/**", "/board/**", "/general/**", "/hr/**")
 											.authenticated()
-//											.requestMatchers("/hr/**").hasAnyRole("PERSON", "CEO") //인사팀
-											.requestMatchers("/general/getUsableList","/general/getCarNumber").hasAnyRole("SALES","FIELD") // 현장,영업팀 스케쥴 관련
-											.requestMatchers("/general/**").hasAnyRole("GENERAL", "CEO") //총무팀
-//											.requestMatchers("/customer/**").hasAnyRole("SALES", "CEO") //영업팀
-//											.requestMatchers("/hr/**").hasAnyRole("FIELD", "CEO") //현장팀
-//											.requestMatchers("/schedule/list").hasAnyRole("SALES","FIELD", "CEO") //스케쥴
+											//.requestMatchers("/hr/**").hasAnyRole("FIELD", "CEO") //현장팀
 											.anyRequest().permitAll()
 											//.anyRequest().authenticated()//나머지
 		)

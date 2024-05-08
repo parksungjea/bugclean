@@ -1,6 +1,7 @@
 package com.winter.app.humanResource;
 
 import com.winter.app.employee.EmployeeVO;
+import com.winter.app.employee.RnRVO;
 import com.winter.app.util.pagination.Pagination;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -51,13 +52,11 @@ public class HumanResourceService {
         List<Map<String, Object>> memberList = humanResourceDAO.getMemberList();
         for(Map<String, Object> member : memberList){
             String add = (String)member.get("ADDRESS");
-            log.info("{}",add);
             if(add != null){
-                Pattern pattern = Pattern.compile("(.*?)(시|군|구)\\s(.*?)(시|군|구|$)");
+                Pattern pattern = Pattern.compile("(.*?)\\s(.*?)(시|군|구|$)");
                 Matcher matcher = pattern.matcher(add);
                 if (matcher.find()) {
-                    String parsedAddress = matcher.group(1) + matcher.group(2) + " " + matcher.group(3) + matcher.group(4);
-                    log.info("{}",parsedAddress);
+                    String parsedAddress = matcher.group(1) + " " + matcher.group(2) + matcher.group(3);
                     member.put("ADDRESS", parsedAddress);
                 }
             }
@@ -111,12 +110,10 @@ public class HumanResourceService {
                 possible.add(stringObjectMap);
             }
             String add = (String)stringObjectMap.get("ADDRESS");
-            log.info("{}",add);
-            Pattern pattern = Pattern.compile("(.*?)(시|군|구)\\s(.*?)(시|군|구|$)");
+            Pattern pattern = Pattern.compile("(.*?)\\s(.*?)(시|군|구|$)");
             Matcher matcher = pattern.matcher(add);
             if (matcher.find()) {
-                String parsedAddress = matcher.group(1) + matcher.group(2) + " " + matcher.group(3) + matcher.group(4);
-                log.info("{}",parsedAddress);
+                String parsedAddress = matcher.group(1) + " " + matcher.group(2) + matcher.group(3);
                 stringObjectMap.put("ADDRESS", parsedAddress);
             }
         }
@@ -148,7 +145,6 @@ public class HumanResourceService {
 
     public List<Map<String, Object>> getSalaryList(Integer year) throws Exception {
         List<Map<String, Object>> ar = humanResourceDAO.getSalaryList(year);
-        log.info("{}", ar);
         return humanResourceDAO.getSalaryList(year);
     }
 
@@ -182,8 +178,6 @@ public class HumanResourceService {
         pagination.makeNum(totalCount);
         pagination.makeRow();
 
-        log.info("{}", date);
-
         List<Map<String, Object>> list = humanResourceDAO.getAttendanceList(date);
         for (Map<String, Object> empAttendance : list) {
             BigDecimal vac = (BigDecimal) empAttendance.get("ATTEND_VAC");
@@ -201,8 +195,6 @@ public class HumanResourceService {
         response.put("data", list);
         response.put("recordsFiltered", totalCount);
 
-        log.info("{}", response);
-
         return response;
     }
 
@@ -216,7 +208,11 @@ public class HumanResourceService {
         String manager_num = humanResourceDAO.getManagerNum(employeeVO.getDepartmentVO());
         employeeVO.setManager_num(manager_num);
         employeeVO.setState("1");
-        log.info("{}", employeeVO);
+        RnRVO rnRVO = new RnRVO();
+        rnRVO.setRnr_code(4L);
+        employeeVO.setRnrVO(rnRVO);
+
+        log.info("{}",employeeVO);
 
         int result = humanResourceDAO.setEmployee(employeeVO);
         if (result == 1) {
@@ -228,7 +224,6 @@ public class HumanResourceService {
         int year = date.getYear();
         salaryVO.setSalary_year((long)year);
         salaryVO.setSalary_pay(0L);
-        log.info("{}",salaryVO);
         result = humanResourceDAO.setSalary(salaryVO);
         VacationVO vacationVO = new VacationVO();
         vacationVO.setEmployee_num(employeeVO.getEmployee_num());
@@ -240,12 +235,12 @@ public class HumanResourceService {
     }
 
     public int delTempEmployee(EmployeeVO employeeVO) throws Exception {
-        log.info("{}",employeeVO);
         return humanResourceDAO.delTempEmployee(employeeVO.getUsername());
     }
 
     public int updateResignationList(EmployeeVO employeeVO) throws Exception{
         employeeVO.setState("1");
+        employeeVO.setRetired_date(null);
         return humanResourceDAO.updateResignationList(employeeVO);
     }
 

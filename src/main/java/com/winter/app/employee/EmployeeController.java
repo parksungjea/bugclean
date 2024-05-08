@@ -68,7 +68,6 @@ public class EmployeeController {
 	@PostMapping("create")
 	public String create(@Validated(EmployeeCreateGroup.class) EmployeeVO employeeVO, BindingResult bindingResult,Model model) throws Exception{
 		
-		System.out.println("Member Add");
 		String username= employeeVO.getUsername();
 		employeeVO.setUsername(username+"@gmail.com");
 		
@@ -87,14 +86,14 @@ public class EmployeeController {
 	@PostMapping("mailSend")
 	@ResponseBody
 	public String mailSend(String email) {
-		System.out.println("Mail:"+email);
+
 		
 		
 		number = employeeService.sendMail(email);
 
         String num = "" + number;
 
-        System.out.println("num:"+num);
+
         return num;
         
     }
@@ -143,8 +142,7 @@ public class EmployeeController {
 	//서명 등록,변경
 	@PostMapping("signSave")
 	public String signSave(@ModelAttribute EmployeeVO employeeVO,Model model, HttpSession session) throws Exception{
-		System.out.println("서명파일:"+employeeVO.getEmployee_num());
-		
+
 		//db 변경
 		int check = employeeService.signSave(employeeVO);
 		
@@ -170,8 +168,7 @@ public class EmployeeController {
 	@PostMapping("infoUpdate")
 	public String infoUpdate(@ModelAttribute EmployeeVO employeeVO,Model model) throws Exception{
 		 
-		System.out.println(employeeVO.getAddress());
-		System.out.println(employeeVO.getPhone());
+
 		
 		log.info("{}",employeeVO);
 		
@@ -275,8 +272,7 @@ public class EmployeeController {
 		//정보 일치 시 임시비번 문자 전송
 		tempPw = employeeService.sendPhone(employeeVO.getPhone());
 
-		System.out.println("SMS임시:"+tempPw);
-		
+
 		//임시비번으로 비밀번호 변경
 		int result = employeeService.tempPwUpdate(employeeVO);
 		

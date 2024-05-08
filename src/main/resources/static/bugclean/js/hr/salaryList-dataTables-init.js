@@ -29,7 +29,6 @@ async function getData(year) {
     for (let item of response) {
         item.SALARY_PAY += "만원";
     }
-    console.log(response);
     return response;
 }
 
@@ -37,11 +36,8 @@ let salaryData;
 $('#salaryList tbody').on('click', 'tr', function() {
     $('#salaryModal').modal('show');
     let tr = $(this);
-    console.log(tr);
     let table = $("#salaryList").DataTable();
-    console.log(table);
     let rowData = table.row(tr).data();
-    console.log(rowData);
     $('#modal-title-num').html(rowData.EMPLOYEE_NUM);
     $('#modal-title-name').html(rowData.NAME);
     $('#account').val(rowData.SALARY_ACCOUNT);

@@ -6,7 +6,8 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+	<title>BUGCLEAN</title>
+	<link rel="icon" type="image/x-icon" href="/bugclean/favicon.ico">
 <link rel="stylesheet" href="/bugclean/css/scheduleList.css">
 </head>
 <c:import url="../temp/css.jsp"></c:import>

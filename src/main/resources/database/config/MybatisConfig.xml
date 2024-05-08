@@ -4,7 +4,7 @@
   "https://mybatis.org/dtd/mybatis-3-config.dtd"> 
   <configuration>
 	<settings>
-	<!-- <setting name="logImpl" value="org.apache.ibatis.logging.stdout.StdOutImpl"/> -->
+	 <setting name="logImpl" value="org.apache.ibatis.logging.stdout.StdOutImpl"/>
 		<setting name="jdbcTypeForNull" value="NULL"/>
 	</settings>
 	<!-- 쿼리문 콘솔창에 띄워줌 VO가 null일때 부적합 한 열유형 에러 나옴. null을 null로 인식하게 해줘서 에러 방지함  -->

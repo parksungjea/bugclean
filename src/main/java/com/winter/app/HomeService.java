@@ -3,6 +3,7 @@ package com.winter.app;
 import java.util.List;
 import java.util.Map;
 
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -12,6 +13,7 @@ import com.winter.app.general.CarManageVO;
 import com.winter.app.humanResource.AttendanceVO;
 
 @Service
+@Slf4j
 public class HomeService {
 	@Autowired
 	private HomeDAO homeDAO;
@@ -34,6 +36,7 @@ public class HomeService {
 	//출
 	public int setAttendence(AttendanceVO attendanceVO) throws Exception {
 		int result = homeDAO.setAttendence(attendanceVO);
+		log.info("{}",attendanceVO);
 		return result;
 	}
 	//퇴

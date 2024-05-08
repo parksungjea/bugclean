@@ -9,7 +9,6 @@ const btn = document.getElementById("btn");
 const temporaryBtn = document.getElementById("temporaryBtn");
 const updateBtn = document.getElementById("updateBtn");
 linebtn.addEventListener("click", function() {
-    console.log("여기는 모달 여기는 모달")
     modalBack.classList.remove("noshow")
     modal.classList.remove("noshow")
 /*    files.style.display="none";
@@ -19,7 +18,6 @@ linebtn.addEventListener("click", function() {
 })
 
 modalCloseBtn.addEventListener("click", function() {
-    console.log("여기는 닫기버튼 여기는 닫기버튼")
     modalBack.classList.add("noshow")
     modal.classList.add("noshow")
 /*    files.style.display="block";

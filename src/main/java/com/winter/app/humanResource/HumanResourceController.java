@@ -66,8 +66,6 @@ public class HumanResourceController {
         responseData.put("tempMember", tempMember.get("tempMember"));
         responseData.put("commons", commons);
 
-        log.info("temp:{}", responseData);
-
         return responseData;
     }
 
@@ -101,14 +99,13 @@ public class HumanResourceController {
         Map<String, Object> response = new HashMap<>();
         response.put("data",humanResourceService.getMemberDetail(employeeVO));
         response.put("commons",commonsService.getCommonsList());
-        log.info("{}",response);
+
         return response;
     }
 
     @PostMapping("member/update")
     @ResponseBody
     public void updateMember(@RequestBody Map<String, Object> req) throws Exception{
-        log.info("========================={}=================================",req);
         int check = humanResourceService.updateMember(req);
     }
 
@@ -146,7 +143,6 @@ public class HumanResourceController {
     @ResponseBody
     public int updateSalary(SalaryVO salaryVO) throws Exception{
         int check = humanResourceService.updateSalary(salaryVO);
-        log.info("{}",salaryVO);
         if(check == 1){
             check =  salaryVO.getSalary_year().intValue();
         }
@@ -156,7 +152,6 @@ public class HumanResourceController {
     @PostMapping("/attendance/list")
     @ResponseBody
     public Map<String, Object> getAttendanceList(@RequestParam Map<String, Object> req) throws Exception {
-        log.info("{}", req);
 
         return humanResourceService.getAttendanceList(req);
     }

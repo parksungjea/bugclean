@@ -11,7 +11,8 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <link href="/focus-bootstrap-main/theme/vendor/nestable2/css/jquery.nestable.min.css" rel="stylesheet">
-<title>Focus - Bootstrap Admin Dashboard</title>
+	<title>BUGCLEAN</title>
+	<link rel="icon" type="image/x-icon" href="/bugclean/favicon.ico">
 <!-- Favicon icon -->
 <c:import url="../temp/css.jsp"></c:import>
 

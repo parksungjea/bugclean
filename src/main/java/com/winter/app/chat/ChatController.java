@@ -88,7 +88,6 @@ public class ChatController {
 	@PostMapping("sendMsg")
 	@ResponseBody
 	public int sendMsg(@RequestBody ChatMessage chatMessage) throws Exception{
-		System.out.println("send msg ==== > \n " + chatMessage);
 		int result = chatService.sendMsg(chatMessage);
 		
 		return result;
@@ -97,8 +96,6 @@ public class ChatController {
 	@PostMapping("getLastWriter")
 	@ResponseBody
 	public ChatMessage getLastWriter(@RequestBody ChatMessage chatMessage) throws Exception{
-		System.out.println("chat msg ===> \n" + chatMessage ) ;
-		
 		return chatService.getLastWriter(chatMessage);
 	}
 	
@@ -113,9 +110,7 @@ public class ChatController {
 		employeeVO.setUsername(userDetails.getUsername());
 		
 		List<Map<String, Object>> list = chatService.getEmployeeList(employeeVO);
-		
-		System.out.println(list);
-		
+
 		return list;
 	}
 	//부서 리스트 가져오기
@@ -131,9 +126,7 @@ public class ChatController {
 	@PostMapping("getEmpInfo")
 	@ResponseBody
 	public Map<String, Object> getEmpIfo(@RequestBody EmployeeVO employeeVO) throws Exception{
-		System.out.println("getempInfo === \n" + employeeVO);
 		Map<String, Object> map = chatService.getEmpInfo(employeeVO);
-		System.out.println("after get Info === \n" + employeeVO);
 		return map;
 	}
 	
@@ -153,7 +146,6 @@ public class ChatController {
 		Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 		UserDetails userDetails = (UserDetails)principal;
 		name = userDetails.getUsername();
-		System.out.println("get principal : " + name);
 		return name;
 	}
 	
@@ -162,15 +154,13 @@ public class ChatController {
 	@PostMapping("getChattingRoom")
 	@ResponseBody
 	public List<Map<String,Object>> getChattingRoom(@RequestBody EmployeeVO employeeVO) throws Exception{
-		System.out.println("employee vo ==== > \n" + employeeVO);
 		return chatService.getChattingRoom(employeeVO);
 	}
 	
 	@PostMapping("getLastMessage")
 	@ResponseBody
 	public ChatMessage getLastMessage(@RequestBody ChatMemberVO chatMemberVO) throws Exception{
-		System.out.println("last message vo ===> \n " + chatMemberVO);
-		
+
 		return chatService.getLastMessage(chatMemberVO);
 	}
 }

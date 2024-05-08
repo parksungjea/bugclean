@@ -5,9 +5,12 @@ import com.winter.app.util.pagination.Pagination;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
+import java.util.Collection;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -40,7 +43,17 @@ public class BoardService {
         map.put("boardList",boardDAO.getBoardList(pagination));
         map.put("pagination",pagination);
 
-        log.info("{}",map);
+        boolean roleCheck = false;
+        Collection<? extends GrantedAuthority> arr = SecurityContextHolder.getContext().getAuthentication().getAuthorities();
+
+        for(GrantedAuthority role : arr){
+            if(role.getAuthority().equals("ROLE_PERSON")||role.getAuthority().equals("ROLE_SUPPORT")||role.getAuthority().equals("ROLE_CEO")){
+                roleCheck = true;
+                break;
+            }
+        }
+
+        map.put("roleCheck",roleCheck);
 
         return map;
     }
@@ -50,7 +63,6 @@ public class BoardService {
     }
 
     public int setBoard(BoardVO boardVO, MultipartFile [] files) throws Exception{
-        log.info("보드코드 널인지 확인해봐{}",boardVO);
         if(boardVO.getBoard_code() == null){
             if(boardVO.getCate_code()==1){
                 boardVO.setBoard_code(boardDAO.getNoticeSeq());

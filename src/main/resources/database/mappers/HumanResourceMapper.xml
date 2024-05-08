@@ -33,7 +33,7 @@
         FROM EMPLOYEE
         LEFT JOIN DEPARTMENT ON EMPLOYEE.DEP_CODE = DEPARTMENT.DEP_CODE
         LEFT JOIN POSITION ON EMPLOYEE.POS_CODE = POSITION.POS_CODE
-        WHERE RETIRED_DATE IS NOT NULL
+        WHERE STATE = 0
     </select>
 
     <select id="getVacationList" parameterType="Integer" resultType="Map">
@@ -171,10 +171,10 @@
     <insert id="setEmployee" parameterType="EmployeeVO">
         INSERT INTO EMPLOYEE
         (EMPLOYEE_NUM, DEP_CODE, POS_CODE, TYPE_CODE, USERNAME, NICKNAME, PASSWORD, NAME, PHONE, LEVEL_DATE, STATE,
-        MANAGER_NUM)
+        MANAGER_NUM, RNR_CODE, ADDRESS)
         VALUES
         (#{employee_num}, #{departmentVO.dep_code}, #{positionVO.pos_code}, #{workTypeVO.type_code}, #{username}, '미설정',
-        #{password}, #{name}, #{phone}, #{level_date}, #{state}, #{manager_num})
+        #{password}, #{name}, #{phone}, #{level_date}, #{state}, #{manager_num}, #{rnrVO.rnr_code}, #{address})
     </insert>
 
     <delete id="delTempEmployee" parameterType="String">

@@ -58,9 +58,6 @@ public class SiteSchService {
 		customerVO  =schDAO.getCustomerInfo2(schVO);
 		schVO.setCeo_Name(customerVO.getCeo_Name());
 		schVO.setBusiness_Name(customerVO.getBusiness_Name());
-		
-		System.out.println("sch service ===== " + schVO);
-		
 		return schDAO.createSch(schVO);
 	}
 	

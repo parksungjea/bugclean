@@ -8,7 +8,8 @@
 
 <head>
     <meta charset="UTF-8">
-    <title>Bug Clean</title>
+    <title>BUGCLEAN</title>>
+    <link rel="icon" type="image/x-icon" href="/bugclean/favicon.ico">
     <style>
         .table-hover thead th,
         .table-hover tbody td {

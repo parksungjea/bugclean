@@ -42,11 +42,9 @@ public class CustomerService {
 		
 		
 		Long totalCount = customerDAO.getCompanyTotalCount(pagination);
-		System.out.println("total count ==> " + totalCount);
 		pagination.setPerPage(5L);
 		pagination.makeNum(totalCount);
 		pagination.makeRow();
-		System.out.println("pageer ==> " + pagination);
 		List<CustomerVO> ar = customerDAO.getCompanyList(pagination);
 		
 		for(int i=0;i<ar.size();i++) {
@@ -58,13 +56,11 @@ public class CustomerService {
 		Map<String, Object> companyMap = new HashMap<>();
 		companyMap.put("ar", ar);
 		companyMap.put("company_pager", pagination);
-		System.out.println("service map ==> " + companyMap);
 		return companyMap;
 	}
 	
 	public Map<String, Object> getPersonList(Pagination pagination) throws Exception{
 		Long totalCount = customerDAO.getPersonTotalCount(pagination);
-		System.out.println("service personCount == > " + totalCount);
 		pagination.setPerPage(5L);
 		pagination.makeNum(totalCount);
 		pagination.makeRow();
@@ -81,8 +77,7 @@ public class CustomerService {
 		Map<String, Object> personMap = new HashMap<>();
 		personMap.put("ar", ar);
 		personMap.put("person_pager", pagination);
-		System.out.println("service map ==> " + personMap);
-		
+
 		
 		return personMap;
 	}
@@ -96,13 +91,12 @@ public class CustomerService {
 	}
 	
 	public int createCustomer(CustomerVO customerVO) throws Exception{
-		System.out.println("customer service before ==> " + customerVO);
+
 		if(customerVO.getCustomer_Type().equals("개인")) { 
 			customerVO.setBusiness_Name("개인");
 			
 		}
-		System.out.println("customer service after ==> " + customerVO);
-		
+
 		return customerDAO.createCustomer(customerVO);
 	}
 

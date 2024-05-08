@@ -90,6 +90,7 @@
         <result property="NAME" column="NAME"/>
         <result property="BOARD_DATE" column="BOARD_DATE"/>
         <result property="BOARD_HIT" column="BOARD_HIT"/>
+        <result property="EMPLOYEE_NUM" column="EMPLOYEE_NUM"/>
         <collection property="fileVOs" javaType="List" ofType="BoardFileVO">
             <id column="FILE_CODE" property="file_code"/>
             <result column="FILE_NAME" property="file_name"/>
@@ -98,7 +99,7 @@
     </resultMap>
 
     <select id="getBoardDetail" resultMap="BoardDetail" resultType="HashMap" parameterType="BoardVO">
-        SELECT BOARD_CODE, BOARD_TITLE, BOARD_CONTENTS, NAME, TO_CHAR(BOARD_DATE, 'YYYY-MM-DD') AS "BOARD_DATE", FILE_NAME,
+        SELECT EMPLOYEE_NUM, BOARD_CODE, BOARD_TITLE, BOARD_CONTENTS, NAME, TO_CHAR(BOARD_DATE, 'YYYY-MM-DD') AS "BOARD_DATE", FILE_NAME,
         ORIGIN_NAME, FILE_CODE, TO_CHAR(BOARD_HIT, '999,999,999') AS "BOARD_HIT" FROM BOARD JOIN
         EMPLOYEE USING (EMPLOYEE_NUM) LEFT JOIN
         BOARD_FILE USING (BOARD_CODE, CATE_CODE)

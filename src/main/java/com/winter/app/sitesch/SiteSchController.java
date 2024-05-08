@@ -33,10 +33,9 @@ public class SiteSchController {
 	@GetMapping("getList")
 	@ResponseBody
 	public List<Map<String, Object>> getList(Pagination pagination, Model model) throws Exception {
-		System.out.println("search ====== \n " + pagination);
+
 		List<Map<String, Object>> map = schService.getList(pagination);
-		
-		System.out.println("list = " + map);
+
 		model.addAttribute("list",map);
 		
 		return map;
@@ -68,7 +67,6 @@ public class SiteSchController {
 	@PostMapping("create")
 	@ResponseBody
 	public int createSchedule(@RequestBody SiteSchVO schVO) throws Exception{
-		System.out.println("schVO ==== " + schVO);
 		int result = schService.createSch(schVO);
 		return result;
 	}
@@ -76,8 +74,7 @@ public class SiteSchController {
 	@PostMapping("updateSch")
 	@ResponseBody
 	public int updateSch(@RequestBody SiteSchVO schVO) throws Exception{
-		System.out.println("update Sch vo ===== \n " + schVO);
-		
+
 		int result = schService.updateSch(schVO);
 		
 		return result;
@@ -85,7 +82,6 @@ public class SiteSchController {
 	@PostMapping("updateSchType")
 	@ResponseBody
 	public int updateSchType(@RequestBody SiteSchVO schVO) throws Exception{
-		System.out.println("update Sch 취소====\n " + schVO);
 		int result = schService.updateSchType(schVO);
 		
 		return result;
@@ -104,7 +100,6 @@ public class SiteSchController {
 	@ResponseBody
 	public int updateSchDrag(@RequestBody SiteSchVO schVO) throws Exception{
 		int result =0;
-		System.out.println("schVO Drag Event == " + schVO);
 		schService.updateSchDrag(schVO);
 		
 		return result;
@@ -113,7 +108,6 @@ public class SiteSchController {
 	@PostMapping("carAllocation")
 	@ResponseBody
 	public int carAllocation(@RequestBody SiteSchVO schVO) throws Exception{
-		System.out.println("배차 정보 수정 schVO ===\n " + schVO);
 		int result = schService.updateManageCode(schVO);
 		
 		return result;

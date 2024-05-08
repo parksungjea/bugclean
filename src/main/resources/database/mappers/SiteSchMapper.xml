@@ -72,16 +72,16 @@
  	<select id="getCustomerInfo2" parameterType="SiteSchVO" resultType="CustomerVO">
  		SELECT * FROM CUSTOMER WHERE CUSTOMER_NUM = #{customer_Num}
  	</select>
- 	
- 	<!-- 영업 사원 리스트 가져오기 , 셀렉트 박스에 사용  -->
- 	<select id="getSales" resultType="EmployeeVO">
- 		SELECT EMPLOYEE_NUM, NAME,STATE FROM EMPLOYEE WHERE DEP_CODE = 101 
- 	</select>
- 	
- 	<!-- 현장 사원 리스트 가져오기 , 셀렉트 박스에 사용 -->
- 	<select id="getSiter" resultType="EmployeeVO">
- 		SELECT EMPLOYEE_NUM, NAME,STATE FROM EMPLOYEE WHERE DEP_CODE = 102 
- 	</select>
+
+	<!-- 영업 사원 리스트 가져오기 , 셀렉트 박스에 사용  -->
+	<select id="getSales" resultType="EmployeeVO">
+		SELECT EMPLOYEE_NUM, NAME,STATE FROM EMPLOYEE WHERE DEP_CODE = 101 AND STATE =1
+	</select>
+
+	<!-- 현장 사원 리스트 가져오기 , 셀렉트 박스에 사용 -->
+	<select id="getSiter" resultType="EmployeeVO">
+		SELECT EMPLOYEE_NUM, NAME,STATE FROM EMPLOYEE WHERE DEP_CODE = 102 AND STATE =1
+	</select>
  	
  	<!-- 모든 거래처 가져오기 , 회사명 입력 셀렉트 박스에 사용 -->
  	<select id="getCustomerList" resultType="CustomerVO">

@@ -42,7 +42,6 @@ public class DraftService {
 
 			for (MultipartFile multipartFile : files) {
 
-				System.out.println("for안 : " + multipartFile);
 				if (multipartFile.isEmpty()) {
 					continue;
 				}
@@ -69,11 +68,8 @@ public class DraftService {
 		Map<String, Object> map = draftDAO.getDraftDetail(draftVO);
 		if (map != null) {
 			String date = map.get("DRAFT_DATE").toString();
-			System.out.println("date : " + date);
 			String[] splitDate = date.split(" ");
-			System.out.println("splitDate : " + splitDate[0]);
 			map.put("DRAFT_DATE", splitDate[0]);
-			System.out.println("mapDate :" + map.get("DRAFT_DATE"));
 			Clob clob = (Clob) map.get("CONTENTS");
 			String data = clobToString(clob); // CLOB 데이터를 문자열로 변환
 			map.put("CONTENTS", data);
@@ -85,13 +81,16 @@ public class DraftService {
 	// clob관련
 	private static String clobToString(Clob clob) throws Exception {
 		StringBuilder sb = new StringBuilder();
-		BufferedReader br = new BufferedReader(clob.getCharacterStream());
-		String line;
-		while ((line = br.readLine()) != null) {
-			sb.append(line);
+		if(clob != null){
+			BufferedReader br = new BufferedReader(clob.getCharacterStream());
+			String line;
+			while ((line = br.readLine()) != null) {
+				sb.append(line);
+			}
+			br.close();
+			return sb.toString();
 		}
-		br.close();
-		return sb.toString();
+		return null;
 	}
 
 	// 결재라인디테일
@@ -103,7 +102,6 @@ public class DraftService {
 			if (mapAr.get(i).get("SIGN_FILE") != null) {
 				Clob clob = (Clob) mapAr.get(i).get("SIGN_FILE");
 				String data = clobToString(clob); // CLOB 데이터를 문자열로 변환
-				System.out.println("CLOB 데이터: " + data);
 				mapAr.get(i).put("SIGN_FILE", data);
 			}
 			if(mapAr.get(i).get("SIGN_DATE") != null) {
@@ -150,7 +148,6 @@ public class DraftService {
 		int result = 0;
 		for (int i = 0; i < referencesVOs.length; i++) {
 
-			System.out.println("refNum : " + refempnum[i]);
 			referencesVOs[i] = new ReferencesVO();
 			referencesVOs[i].setDraft_num(draftVO.getDraft_num());
 			referencesVOs[i].setEmployee_num(refempnum[i]);
@@ -175,24 +172,20 @@ public class DraftService {
 
 	public int setDetailDraft(DraftVO draftVO, List<Map<String, Object>> approvalar) throws Exception {
 		if (draftVO.getState() == 0) {
-			System.out.println("Now_approval1 : "+draftVO.getNow_approval());
+
 			draftVO.setNow_approval(draftVO.getNow_approval() + 1);
-			System.out.println("Now_approval2 : "+draftVO.getNow_approval());
-			System.out.println("approvalar.size : "+ approvalar.size());
+
 			draftVO.setState(0L);
 			if (approvalar.size() <= draftVO.getNow_approval()) {
 				draftVO.setState(3L);
-				System.out.println("state : "+draftVO.getState());
+
 			}
 		}else if(draftVO.getState() == 2) {
 			LocalDate localDate = LocalDate.now();
 			String date = localDate.toString();
 			draftVO.setDraft_date(date);
-			System.out.println("임시저장 날짜 : "+ draftVO.getDraft_date());
 		}
-		System.out.println("state 2 : "+draftVO.getState());
 		int result = draftDAO.setDetailDraft(draftVO);
-		System.out.println("result : " +result);
 		return result;
 	}
 

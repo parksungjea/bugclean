@@ -18,15 +18,12 @@ let highPlusIcon = document.getElementsByClassName("highPlusIcon");
 let highMinusIcon = document.getElementsByClassName("highMinusIcon");
 let orgTeamBigDiv = document.getElementsByClassName("orgTeamBigDiv");
 let select = document.getElementById("select");
-console.log("basis js")
 
 
-console.log("조직도오오오오오오오오오오")
 
 
 for (let i = 0; i < highPlusIcon.length; i++) {
 	highPlusIcon[i].addEventListener("click", function() {
-		console.log("여기는 조직도 여기는 조직도")
 		if (highPlusIcon[i].style.display != "none") {
 			highPlusIcon[i].style.setProperty("display", "none");
 			highMinusIcon[i].style.display = "inline-block";
@@ -39,7 +36,6 @@ for (let i = 0; i < highPlusIcon.length; i++) {
 
 	})
 	highMinusIcon[i].addEventListener("click", function() {
-		console.log("여기는 조직도 여기는 조직도")
 		if (highPlusIcon[i].style.display != "none") {
 			highPlusIcon[i].style.setProperty("display", "none");
 			highMinusIcon[i].style.display = "inline-block";
@@ -58,7 +54,6 @@ for (let i = 0; i < highPlusIcon.length; i++) {
 
 for (let i = 0; i < plusIcon.length; i++) {
 	plusIcon[i].addEventListener("click", function() {
-		console.log("여기는 조직도 여기는 조직도")
 		if (plusIcon[i].style.display != "none") {
 			plusIcon[i].style.setProperty("display", "none");
 			minusIcon[i].style.display = "inline-block";
@@ -71,7 +66,6 @@ for (let i = 0; i < plusIcon.length; i++) {
 
 	})
 	minusIcon[i].addEventListener("click", function() {
-		console.log("여기는 조직도 여기는 조직도")
 		if (plusIcon[i].style.display != "none") {
 			plusIcon[i].style.setProperty("display", "none");
 			minusIcon[i].style.display = "inline-block";
@@ -101,9 +95,6 @@ for (let i = 0; i < orgPepleSpan.length; i++) {
 
 }
 let b = orgAll[0].textContent.split(" ");
-console.log("b : " + b[0]);
-console.log(orgAll[0].textContent);
-console.log(orgDep[0].textContent);
 draftBtnPlus
 	.addEventListener(
 		"click",
@@ -131,8 +122,6 @@ draftBtnMinus.addEventListener("click", function() {
 			let orTemp = peopleSpanArr[j];
 
 			if (getComputedStyle(orTemp).backgroundColor == "rgb(196, 232, 230)") {
-				console.log(a);
-				console.log(orgDep[n].textContent, a, orgDep[n].textContent == a)
 				if (orgDep[n].textContent == a) {
 					orgPepleDiv[n].appendChild(orTemp)
 					orTemp.style.backgroundColor = "white";
@@ -148,7 +137,6 @@ let c = orgAll[0].textContent.split(" ");
 refPlusBtn.addEventListener(
 	"click",
 	function() {
-		console.log("dddddddddd")
 		for (let j = 0; j < orgPepleSpan.length; j++) {
 			let orTemp = orgPepleSpan[j];
 			if (getComputedStyle(orTemp).backgroundColor == "rgb(196, 232, 230)") {
@@ -161,7 +149,6 @@ refPlusBtn.addEventListener(
 
 // let ddn = document.querySelector("div[data-dep-name='영업팀']")
 refMinusBtn.addEventListener("click", function() {
-	console.log("bbbbbbbbbbbbb")
 	for (let n = 0; n < orgDep.length; n++) {
 		let orgAllArr = [...orgAll];
 		let peopleSpanArr = [...orgPepleSpan];
@@ -171,8 +158,6 @@ refMinusBtn.addEventListener("click", function() {
 			let orTemp = peopleSpanArr[j];
 
 			if (getComputedStyle(orTemp).backgroundColor == "rgb(196, 232, 230)") {
-				console.log(a);
-				console.log(orgDep[n].textContent, a, orgDep[n].textContent == a)
 				if (orgDep[n].textContent == a) {
 					orgPepleDiv[n].appendChild(orTemp)
 					orTemp.style.backgroundColor = "white";
@@ -184,7 +169,6 @@ refMinusBtn.addEventListener("click", function() {
 
 //////////////////////////////초기화
 modalResetBtn.addEventListener("click", function() {
-	console.log("bbbbbbbbbbbbb")
 	for (let n = 0; n < orgDep.length; n++) {
 		let orgAllArr = [...orgAll];
 		let peopleSpanArr = [...orgPepleSpan];
@@ -192,10 +176,6 @@ modalResetBtn.addEventListener("click", function() {
 
 			let a = orgAllArr[j].getAttribute("data-dep-name");
 			let orTemp = peopleSpanArr[j]
-
-
-			console.log(a);
-			console.log(orgDep[n].textContent, a, orgDep[n].textContent == a)
 			if (orgDep[n].textContent == a) {
 				orgPepleDiv[n].appendChild(orTemp)
 				orTemp.style.backgroundColor = "white";
@@ -222,10 +202,7 @@ modalCreateBtn.addEventListener("click", function() {
 		empNum[i] = draftBoxTdAr[i].lastElementChild.getAttribute("data-emp-num")
 		orgArrDep[i] = splitValue[1];
 		orgArrName[i] = splitValue[2];
-		console.log("empNum[i]" + empNum[i]);
 	}
-	console.log("dep : " + orgArrDep)
-	console.log("name : " + orgArrName)
 	let refInp = document.getElementById("refInp")
 
 	//refBoxTd
@@ -233,12 +210,8 @@ modalCreateBtn.addEventListener("click", function() {
 	let refBoxTdArCode = [refBoxTdAr.length]
 	let refBoxTdName = [refBoxTdAr.length];
 	for (let i = 0; i < refBoxTdAr.length; i++) {
-		console.log("=================================")
-		console.log("refBoxTdArName : " + refBoxTdAr[i].lastElementChild.getAttribute("data-pp-name"));
-		console.log("refCode : " + refBoxTdAr[i].lastElementChild.getAttribute("data-emp-num"));
 		refBoxTdArCode[i] = refBoxTdAr[i].lastElementChild.getAttribute("data-emp-num");
 		refBoxTdName[i] = refBoxTdAr[i].lastElementChild.getAttribute("data-pp-name");
-		console.log("refName : " + refBoxTdName[i])
 	}
 	if (refBoxTdName != 0) {
 		refempnum.value = refBoxTdArCode.join(",");
@@ -254,8 +227,6 @@ modalCreateBtn.addEventListener("click", function() {
 		.then(Response => Response.text())
 		.then(res => {
 			const allineTable = document.getElementById("allineTable")
-			console.log(res)
-			console.log(allineTable.innerHTML)
 			allineTable.innerHTML = res;
 
 		})
@@ -273,10 +244,6 @@ selectDiv.addEventListener("change", function(e) {
 
 			let a = orgAllArr[j].getAttribute("data-dep-name");
 			let orTemp = peopleSpanArr[j]
-
-
-			console.log(a);
-			console.log(orgDep[n].textContent, a, orgDep[n].textContent == a)
 			if (orgDep[n].textContent == a) {
 				orgPepleDiv[n].appendChild(orTemp)
 				orTemp.style.backgroundColor = "white";
@@ -287,7 +254,6 @@ selectDiv.addEventListener("change", function(e) {
 
 
 	let selectIndex = e.target.value;
-	console.log("selectIndex : " + selectIndex);
 
 	fetch("/draft/getaldetail", {
 		method: 'POST',
@@ -298,30 +264,13 @@ selectDiv.addEventListener("change", function(e) {
 	})
 		.then(res => res.json())
 		.then(res => {
-			console.log("res : " + res)
-			//console.log
-			for (let i = 0; i < res.length; i++) {
-				console.log(res[i])
-				console.log("res[i].innerHTML : " + res[i].approval_line_code)
-				console.log("res[i] : " + res[i].employee_num)
-
-			}
-
-			//draftboxTd에 넣기
-
+			//draftbo\Td에 넣기
 			for (let i = 0; i < orgPepleSpan.length; i++) {
-
 				let empNum = orgPepleSpan[i].lastElementChild.getAttribute("data-emp-num")
-				console.log("empNum" + empNum);
-
 				let orgPeopleSpan = orgPepleSpan[i];
-				console.log("orgPeoPleSpan" + orgPeopleSpan)
-
 				for (let n = 0; n < res.length; n++) {
 					let getApRank = res[n].line_rank;
 					let getEmpNum = res[n].employee_num;
-					console.log("getEmpNum" + getEmpNum)
-
 					if (empNum == getEmpNum) {
 						if (getApRank != 0) {
 							draftBoxTd.appendChild(orgPeopleSpan)
@@ -339,12 +288,9 @@ let approvalInpName = document.getElementById("approvalInpName")
 approvalBtn.addEventListener("click", function() {
 
 	let approvalValue = draftBoxTd.children;
-	console.log("approvalValue : " + approvalValue.length)
 	let empCode = [approvalValue.length];
-	console.log("approvalInpName@@@@@@@@@@@@ : " + approvalInpName.value)
 	for (let i = 0; i < approvalValue.length; i++) {
 		empCode[i] = approvalValue[i].lastElementChild.getAttribute("data-emp-num");
-		console.log("approvalCode : " + empCode[i])
 	}
 
 	fetch("/draft/getaplist", {
@@ -362,18 +308,10 @@ approvalBtn.addEventListener("click", function() {
 
 })
 
-// select.addEventListener("click", function(){
-//     let selectIndex = select.selectedIndex;
-//     let selectValue = select.options[selectIndex].value;
-//     console.log("selectIndex : "+selectIndex);
-//     console.log("selectValue : " + selectValue);
-// })
-
 let draftDeleteBtn = document.getElementById("draftDeleteBtn");
 
 draftDeleteBtn.addEventListener("click", function() {
 	let draftDeleteBtnData = draftDeleteBtn.getAttribute("data-delete-emp");
-	console.log("draftDeleteBtnData : " + draftDeleteBtnData);
 
 
 	fetch("/draft/draftdelete", {

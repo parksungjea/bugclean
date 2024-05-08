@@ -13,8 +13,10 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width,initial-scale=1">
-    <title>Bug Clean</title>
+    <title>BUGCLEAN</title>
+    <link rel="icon" type="image/x-icon" href="/bugclean/favicon.ico">
     <!-- Favicon icon -->
+
 	<c:import url="./temp/css.jsp"></c:import>
     
     <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>

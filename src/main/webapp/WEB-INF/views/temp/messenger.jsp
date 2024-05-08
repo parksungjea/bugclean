@@ -82,7 +82,6 @@
 				</div>
 				<div class="modal-footer">
 					<button type="button"  class="btn btn-secondary" onclick="close_modal()" data-dismiss="modal">Close</button>
-					<button type="button" class="btn btn-primary">임시</button>
 				</div>
 			</div>
 		</div>

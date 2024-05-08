@@ -2,6 +2,7 @@
          pageEncoding="UTF-8" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
+<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
 
 <style>
     .quixnav {
@@ -31,6 +32,7 @@
 
 
             <li class="nav-label">Team Menu</li>
+            <sec:authorize access="hasAnyRole('PERSON','SUPPORT','CEO')">
             <li><a class="has-arrow" href="javascript:void()"
                    aria-expanded="false"><i class="icon icon-app-store"></i><span
                     class="nav-text">인사팀</span></a>
@@ -42,18 +44,18 @@
                     <li><a href="/hr/attendance">근태관리</a></li>
                 </ul>
             </li>
-
+            </sec:authorize>
+            <sec:authorize access="hasAnyRole('SUPPORT','GENERAL','CEO')">
             <li><a class="has-arrow" href="javascript:void()"
                    aria-expanded="false"><i class="icon icon-app-store"></i><span
                     class="nav-text">총무팀</span></a>
                 <ul aria-expanded="false">
                     <li><a href="/general/property">자산관리</a></li>
-                    <li><a href="/focus-bootstrap-main/theme/app-profile.html">구매요청서</a></li>
                     <li><a href="/general/carManage">배차관리</a></li>
-                    <li><a href="/focus-bootstrap-main/theme/app-profile.html">수익관리</a></li>
                 </ul>
             </li>
-
+            </sec:authorize>
+            <sec:authorize access="hasAnyRole('SALES','BUSINESS','CEO')">
             <li><a class="has-arrow" href="javascript:void()"
                    aria-expanded="false"><i class="icon icon-app-store"></i><span
                     class="nav-text">영업팀</span></a>
@@ -64,7 +66,8 @@
 
                 </ul>
             </li>
-
+            </sec:authorize>
+            <sec:authorize access="hasAnyRole('FIELD','BUSINESS','CEO')">
             <li><a class="has-arrow" href="javascript:void()"
                    aria-expanded="false"><i class="icon icon-app-store"></i><span
                     class="nav-text">현장팀</span></a>
@@ -73,6 +76,7 @@
                     <li><a href="/customer/list">거래처관리</a></li>
                 </ul>
             </li>
+            </sec:authorize>
             <li class="nav-label">DRAFT MENU</li>
             <li><a class="has-arrow" href="javascript:void()"
                    aria-expanded="false"><i class="icon icon-app-store"></i><span

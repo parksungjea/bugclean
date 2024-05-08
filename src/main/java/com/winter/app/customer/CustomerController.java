@@ -32,7 +32,6 @@ public class CustomerController {
 	
 	@GetMapping({"list","sales_list"})
 	public String getList(Pagination pagination,Model model) throws Exception{
-		System.out.println("paging start ==>" + pagination);
 		/*
 		 * Map<String,Object> personMap = new HashMap<>(); personMap=
 		 * customerService.getPersonList(pagination);
@@ -41,12 +40,10 @@ public class CustomerController {
 	    model.addAttribute("personMap", personMap);
 		Map<String, Object> map = customerService.getEmpName();
 	    model.addAttribute("info",map);
-		System.out.println("ma[ =>>>" + map);
 	    Pagination pagination2 = new Pagination();
 	    pagination2.setKind( pagination.getKind());
 	    pagination2.setSearch(pagination.getSearch()) ;
 	    pagination2.setPage(pagination.getPage());
-	    System.out.println("paging 2 start ==> " + pagination2);
 	    
 		/*
 		 * Map<String,Object> companyMap = new HashMap<>(); companyMap =
@@ -75,8 +72,7 @@ public class CustomerController {
 	}
 	@PostMapping("/create")
 	public String createCustomer(CustomerVO customerVO) throws Exception{
-		System.out.println("customer VO == == == = == "+customerVO);
-		
+
 		customerService.createCustomer(customerVO);
 		
 		return "redirect:/customer/sales_list";
@@ -104,7 +100,7 @@ public class CustomerController {
 	
 	@GetMapping("delete")
 	public String deleteCustomer(CustomerVO customerVO) throws Exception{
-		System.out.println("delete 진입");
+
 			customerService.deleteCustomer(customerVO);
 		
 		return "redirect:/customer/sales_list";

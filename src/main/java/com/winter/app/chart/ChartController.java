@@ -25,10 +25,7 @@ public class ChartController {
 		if(month.length() == 1) {
 			month = "0"+month;
 		}
-		
-		System.out.println("month ==> " + month);
 		Long result = chartService.getPrice(month);
-		System.out.println("result ==> " + result);
 		return result;
 	}
 	

@@ -1,5 +1,4 @@
 let detail = (proCode, cateCode, event) => {
-    console.log(proCode);
     if (cateCode === 100) {
         $('#property-modal').modal('show');
 
@@ -10,13 +9,9 @@ let detail = (proCode, cateCode, event) => {
         $('#car_num').addClass('user_name').prop('disabled', true);
         $('#pro_name').addClass('user_name').prop('disabled', true);
 
-        console.log(event.target);
         let tr = $(event.target).closest('tr');
-        console.log(`propertyList-${cateCode}`);
         let table = $(`#propertyList-${cateCode}`).DataTable();
-        console.log(table)
         let rowData = table.row(tr).data();
-        console.log(rowData);
         $("#car_code").html(rowData.CAR_CODE);
         $("#car_num").val(rowData.CAR_NUM);
         $("#car_status").val(`${(rowData.CAR_STATUS === "운용가능" ? 0 : 1)}`);
@@ -31,7 +26,6 @@ let detail = (proCode, cateCode, event) => {
         let tr = $(event.target).closest('tr');
         let table = $(`#propertyList-${cateCode}`).DataTable();
         let rowData = table.row(tr).data();
-        console.log(rowData)
         $('#pro_code').html(rowData.property_code);
         $('#pro-name').val(rowData.property_name);
         $('#add_date').html(rowData.pro_int_date)
@@ -236,7 +230,6 @@ function catePlus(){
 // 직원 목록을 불러와 DataTable에 표시하는 함수
 function propertyList(code) {
 
-    console.log(code);
     let columns;
     if (code === 100) {
         columns = [

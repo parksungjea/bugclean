@@ -6,8 +6,8 @@
 <html>
 <head>
     <meta charset="UTF-8">
-    <title>Bug Clean</title>
-    
+    <title>BUGCLEAN</title>
+    <link rel="icon" type="image/x-icon" href="/bugclean/favicon.ico">
     <script src="https://www.gstatic.com/charts/loader.js"></script>
 	
 </head>

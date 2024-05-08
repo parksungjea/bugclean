@@ -3,6 +3,7 @@ package com.winter.app.employee;
 import java.security.SecureRandom;
 import java.util.HashMap;
 
+import lombok.RequiredArgsConstructor;
 import org.json.simple.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -27,8 +28,8 @@ import net.nurigo.java_sdk.exceptions.CoolsmsException;
 
 @Service
 @Slf4j
-@Transactional(rollbackFor = Exception.class)
-							//유저의 정보를 가져오는 인터페이스
+@Transactional(rollbackFor = Exception.class)//유저의 정보를 가져오는 인터페이스
+@RequiredArgsConstructor
 public class EmployeeService implements UserDetailsService{
 
 	@Autowired
@@ -153,9 +154,7 @@ public class EmployeeService implements UserDetailsService{
     }
     public MimeMessage CreatPwMail(String mail) {
     	getRandomPassword(10);
-    	
-    	System.out.println("랜덤문자 : "+tempPw);
-        MimeMessage message = javaMailSender.createMimeMessage();
+		MimeMessage message = javaMailSender.createMimeMessage();
 
         try {
             message.setFrom(senderEmail);
@@ -319,8 +318,7 @@ public class EmployeeService implements UserDetailsService{
     	getRandomPassword(10);
     	
     	phone = phone.replaceAll("-", "");
-        
-    	System.out.println("phone"+phone);
+
 		Message coolsms = new Message(apiKey, apiSecretKey);
 		
 		HashMap<String, String> params = new HashMap<String, String>();
@@ -332,7 +330,6 @@ public class EmployeeService implements UserDetailsService{
 		
 		try {
 			JSONObject obj = (JSONObject) coolsms.send(params); //보내기&전송결과받기
-			System.out.println("obj : "+obj.toString());
 		} catch (CoolsmsException e) {
 			System.out.println("getMessage : "+e.getMessage());
 			System.out.println("getCode : "+e.getCode());
@@ -346,32 +343,14 @@ public class EmployeeService implements UserDetailsService{
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
     	EmployeeVO employeeVO = new EmployeeVO();
     	employeeVO.setUsername(username);
-    	
-    	System.out.println("----------------로그인 진행");
-    	System.out.println("================"+ username);
-    	
+
     	try {
 			employeeVO= employeeDAO.getDetail(employeeVO);
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-    	System.out.println("sign_file : "+employeeVO.getSign_file());
- 
     	return employeeVO;
     }
-	
-    
-	
-	
-	
-	
-	
-	
-	
-	
-    
-	
-		
-	
+
 }

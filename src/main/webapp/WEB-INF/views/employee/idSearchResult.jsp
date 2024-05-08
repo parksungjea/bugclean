@@ -5,7 +5,8 @@
 
 <head>
     <meta charset="UTF-8">
-    <title>BugClean</title>
+    <title>BUGCLEAN</title>
+    <link rel="icon" type="image/x-icon" href="/bugclean/favicon.ico">
 </head>
 <c:import url="../temp/css.jsp"></c:import> <!-- //bootstrap-template-css -->
 

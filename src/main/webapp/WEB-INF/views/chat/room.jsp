@@ -240,7 +240,7 @@ window.onload = function(){
                                     $("#msgArea").append(str);
                            }
                                 else{
-                                    str="<div class='user2_name'>" + '<img id="user2_profile" src="/focus-bootstrap-main/theme/images/base_profile.png">'+ username2 +"</div>";
+                                    str="<div class='user2_name'>" + '<img src="/focus-bootstrap-main/theme/images/base_profile.png">'+ username2 +"</div>";
                                     str += "<div class='col-6 username2'>";
                                     str += "<div class='alert alert-warning' style='padding : 2%; font-size:small';>";
                                     str +=  content.message ;

@@ -61,7 +61,6 @@ $(document).ready(async function () {
     $("#datePicker").on("change", function () {
         startDate = datePicker.val().substring(0, datePicker.val().indexOf(" "));
         endDate = datePicker.val().substring(datePicker.val().lastIndexOf(" ") + 1);
-        console.log(startDate, endDate)
         // 데이터 테이블 제거
         if (dataTable) {
             dataTable.destroy();
@@ -73,6 +72,5 @@ $(document).ready(async function () {
 
 
     // 초기화
-    console.log(startDate, endDate)
     initDataTables(startDate, endDate);
 });

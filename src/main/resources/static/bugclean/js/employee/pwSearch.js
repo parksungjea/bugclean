@@ -1,4 +1,3 @@
-//console.log('연결');
 let email= null;
 
 
@@ -46,8 +45,7 @@ document.addEventListener("DOMContentLoaded", function() {
         }
         
         email = document.getElementById("inputusername").value + "@gmail.com";
-        //console.log(email);
-        
+
 
     })
 });

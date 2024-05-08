@@ -43,7 +43,6 @@ public class DraftController {
 
 		Map<String, Object> empMap = draftService.getEmployeeDetail(employeeVO);
 		model.addAttribute("empMap", empMap);
-		System.out.println("empMap emp_num : " + empMap.get("EMPLOYEE_NUM"));
 
 		List<Map<String, Object>> ar = draftService.getBasisDraft();
 		model.addAttribute("list", ar);
@@ -60,7 +59,6 @@ public class DraftController {
 //		 employeeVO = draftService.getCEO();
 //		 model.addAttribute("CEO", employeeVO);
 
-		System.out.println("empMap emp_num : " + employeeVO.getEmployee_num());
 		APListVO apListVO = new APListVO();
 		apListVO.setEmployee_num(employeeVO.getEmployee_num());
 		List<APListVO> allist = draftService.getAPList(apListVO);
@@ -77,13 +75,12 @@ public class DraftController {
 		
 		model.addAttribute("employeeNum", employeeVO.getEmployee_num());
 		
-		System.out.println("employeeVO.num : "+employeeVO.getEmployee_num());
-		System.out.println("draftVO.draft_Num : "+draftVO.getDraft_num());
+
 		//기안서 부분
 		draftVO.setEmployee_num(employeeVO.getEmployee_num());
 		Map<String, Object> map = draftService.getDraftDetail(draftVO);
 		model.addAttribute("draftmap", map);
-		System.out.println("draftmap : "+ map);
+
 		//기안서 결재라인부분
 		List<Map<String, Object>> approvalAr = draftService.getSignCheckDetail(draftVO);
 		model.addAttribute("approvalar", approvalAr);
@@ -92,15 +89,11 @@ public class DraftController {
 		}else {
 			ddd =  Integer.parseInt(map.get("NOW_APPROVAL").toString());			
 		}
-		
-		System.out.println("ddd : "+ddd);
-		System.out.println("approvalAr : "+approvalAr.size());
+
 		
 		if(ddd >= approvalAr.size()) {
 			String nowemp = approvalAr.get(approvalAr.size()-1).get("EMPLOYEE_NUM").toString();
-			System.out.println("nowemp : "+nowemp);
 			nowemp +=1;
-			System.out.println("nowemp2 : "+nowemp);
 			model.addAttribute("nowemp", nowemp);			
 		}else {
 				String nowemp = approvalAr.get(ddd).get("EMPLOYEE_NUM").toString();
@@ -109,7 +102,6 @@ public class DraftController {
 		//기안서 참조 부분
 		String name = draftService.getRefDetail(draftVO);
 		model.addAttribute("refname", name);
-		System.out.println("name : "+name);
 		//기안서 파일 부분
 		List<DraftFileVO> fileAr = draftService.getDraftFileDetail(draftVO);
 		model.addAttribute("filear", fileAr);
@@ -122,7 +114,6 @@ public class DraftController {
 		//기안자 
 		Map<String, Object> empMap = draftService.getEmployeeDetail(employeeVO);
 		model.addAttribute("empMap", empMap);
-		System.out.println("map.getSTATE : "+map.get("STATE"));
 		
 		return "draft/draftdetail";
 	}
@@ -138,12 +129,10 @@ public class DraftController {
 	
 	@PostMapping("setdetaildraft")
 	public String setDetailDraft(DraftVO draftVO, MultipartFile [] attach, Model model, String [] SignEmp, String nowemp) throws Exception {
-		System.out.println("draftVO.getstate : " +draftVO.getState());
-		System.out.println("nowemp : " + nowemp);
+
 		//현재 기안서의 결재 라인 불러오기
 		List<Map<String, Object>> approvalAr = draftService.getSignCheckDetail(draftVO);
 		//
-		System.out.println("setDetailDraft-draftVO.nowapproval : "+ draftVO.getNow_approval());
 		if(draftVO.getDraft_category() == 0) {
 		String msg="실패";
 		// 기안서 값들 db에 저장
@@ -152,7 +141,7 @@ public class DraftController {
 		if(result>0) {
 			msg="성공";
 		}
-		
+
 		model.addAttribute("result", msg);
 		model.addAttribute("path", "/receive/inbox");
 		}else if(draftVO.getDraft_category() == 1) {
@@ -211,7 +200,6 @@ public class DraftController {
 		EmployeeVO employeeVO = (EmployeeVO) userDetails;
 		Map<String, Object> empMap = draftService.getEmployeeDetail(employeeVO);
 		model.addAttribute("empMap", empMap);
-		System.out.println("empMap emp_num(getapprovalLine) : " + empMap.get("EMPLOYEE_NUM"));
 
 		List<Map<String, Object>> ar = draftService.getBasisDraft();
 		model.addAttribute("list", ar);
@@ -230,8 +218,6 @@ public class DraftController {
 
 		List<Map<String, Object>> ALar = draftService.setApprovalLine(orgCode, empMap);
 		model.addAttribute("approvalMap", ALar);
-		System.out.println("empMap emp_num(getapprovalLine) : " + empMap.get("EMPLOYEE_NUM"));
-		System.out.println("empMap emp_num(getapprovalLine) : " + employeeVO.getEmployee_num());
 		APListVO apListVO = new APListVO();
 		apListVO.setEmployee_num(employeeVO.getEmployee_num());
 		List<APListVO> allist = draftService.getAPList(apListVO);
@@ -251,7 +237,6 @@ public class DraftController {
 
 		Map<String, Object> empMap = draftService.getEmployeeDetail(employeeVO);
 		model.addAttribute("empMap", empMap);
-		System.out.println("empMap emp_num(getaplist) : " + empMap.get("EMPLOYEE_NUM"));
 		List<Map<String, Object>> ar = draftService.getBasisDraft();
 		model.addAttribute("list", ar);
 

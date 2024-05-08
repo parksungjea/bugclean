@@ -31,28 +31,27 @@ public class GeneralController {
     @PostMapping("carUpdate")
     @ResponseBody
     public int updateCar(@RequestBody CarDetailVO carDetailVO) throws Exception{
-        log.info("{}",carDetailVO);
+
         return generalService.updateCar(carDetailVO);
     }
 
     @PostMapping("carDelete")
     @ResponseBody
     public int deleteCar(@RequestBody CarDetailVO carDetailVO) throws Exception{
-        log.info("{}",carDetailVO);
+
         return generalService.deleteCar(carDetailVO);
     }
 
     @PostMapping("proDelete")
     @ResponseBody
     public int deletePro(@RequestBody PropertyVO propertyVO) throws Exception{
-        log.info("{}",propertyVO);
+
         return generalService.deletePro(propertyVO);
     }
 
     @PostMapping("proUpdate")
     @ResponseBody
     public int updatePro(@RequestBody PropertyVO propertyVO) throws Exception{
-        log.info("{}",propertyVO);
         return generalService.updatePro(propertyVO);
     }
 
@@ -66,7 +65,7 @@ public class GeneralController {
         mv.setViewName("general/PropertyList");
         mv.addObject("pro_cate", generalService.getCate());
         mv.addObject("car_type", generalService.getCarType());
-        log.info("{}",mv.getModel());
+
         return mv;
     }
 
@@ -113,7 +112,7 @@ public class GeneralController {
     @PostMapping("getUsableList")
 	@ResponseBody
 	public List<CarDetailVO> getUsableList(@RequestBody CarManageVO carManageVO) throws Exception{
-		System.out.println(carManageVO);
+
 		return generalService.getUsableList(carManageVO);
 		
 	}

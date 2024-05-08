@@ -1,4 +1,3 @@
-//console.log('연결');
 
 
 //닉 영어
@@ -9,7 +8,6 @@ function onlyEnglish(e)  {
 //서명
 $(document).ready(function() {  
         $( '#exampleModalBtn').on('click', function() {
-            console.log("dusrff")
           var canvas = document.getElementById('signature-pad');
         
            // 픽셀 비율을 고려하여 캔버스 좌표 공간을 조정합니다.
@@ -40,8 +38,6 @@ $(document).ready(function() {
             }
         
             var data = signaturePad.toDataURL('image/png');
-             //console.log(data);
-            // window.open(data);
             $("#img01").attr('src', data);
             $("#sign_file").attr('value', data);
 
@@ -105,7 +101,6 @@ infoUpdateBtn.addEventListener("click",function(e){
 
 //주소
 function sample6_execDaumPostcode() {
-	//console.log('연결');
 	new daum.Postcode({
 		oncomplete: function(data) {
 			// 팝업에서 검색결과 항목을 클릭했을때 실행할 코드를 작성하는 부분.
@@ -172,10 +167,6 @@ function readImg(input) {
 let ctncheck = $("#formFileMultiple");
 ctncheck.on("change", () => {
     let files = ctncheck[0].files; // 선택된 파일들
-    //console.log("click");
-    //console.log("value임 = " + ctncheck.val());
-    //console.log("Attribute임 = " + ctncheck.attr("value"));
-    //console.log("선택된 파일 개수 = " + files.length);
     if (files.length > 1) {
         alert("1개의 파일만 업로드 가능합니다.");
         ctncheck.val(""); // 파일 선택 취소
@@ -183,7 +174,6 @@ ctncheck.on("change", () => {
     }
     for (let i = 0; i < files.length; i++) {
         let ext = files[i].name.split(".").pop().toLowerCase(); // 확장자 분리
-        //console.log("ext임" + ext);
         // 아래 확장자가 있는지 체크 배열에 담아서 비교
         if ($.inArray(ext, ["jpg", "jpeg", "gif", "png"]) == -1) {
             alert(

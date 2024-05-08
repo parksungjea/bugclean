@@ -45,8 +45,6 @@ async function getData(year) {
     }
 
     saveData[year] = response; //비동기 통신으로 가져온 데이터를 해당연도 데이터로 저장
-    console.log(saveData);
-
     return response;
 }
 

@@ -89,7 +89,7 @@ public class EmployeeVO implements UserDetails{
 		}
 		
 		
-		//System.out.println("권한!: "+departmentVO.getDep_role()+positionVO.getPos_role()+rnrVO.getRnr_role());
+		System.out.println("권한!: "+departmentVO.getDep_role()+positionVO.getPos_role()+rnrVO.getRnr_role());
 		log.info("=== ROLE :  {}", authorities); //[1, 총무팀, 과장, 팀장]
 		return authorities;
 	}

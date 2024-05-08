@@ -2,6 +2,7 @@
          pageEncoding="UTF-8" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
+<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
 
 
 <div class="default-tab">
@@ -125,6 +126,6 @@
         </ul>
     </nav>
     <div class="col-4 d-flex justify-content-end">
-        <button id="creat-board" class="btn btn-xs btn-primary">글작성</button>
+        <button id="create-board" class="btn btn-xs btn-primary">글작성</button>
     </div>
 </div>

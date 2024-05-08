@@ -41,6 +41,9 @@
 <div class="card-footer d-flex justify-content-end">
     <div>
         <button id="list-btn" type="button" class="btn btn-primary">목록보기</button>
-        <button id="update-btn" type="button" class="btn btn-primary">수정하기</button>
+        <sec:authentication property="principal" var="employee"/>
+        <c:if test="${employee.employee_num eq board.EMPLOYEE_NUM}">
+            <button id="update-btn" type="button" class="btn btn-primary">수정하기</button>
+        </c:if>
     </div>
 </div>

@@ -74,7 +74,6 @@ public class HomeController {
     //근태
     @Scheduled(cron = "0 0 0 * * *")
   	public void setAttendDate() throws Exception {
-    	System.out.println("자정~~");
   		homeService.setAttendDate();
   	}
     

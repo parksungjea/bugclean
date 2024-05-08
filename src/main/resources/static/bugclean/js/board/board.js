@@ -69,7 +69,7 @@ const pageLoad = async () => {
     });
 
     // 게시글 생성 버튼 클릭 이벤트 핸들러 설정
-    $('#creat-board').on('click', function () {
+    $('#create-board').on('click', function () {
         createBoard(null);
     });
 };
@@ -97,11 +97,8 @@ const deleteFile = (file_code) => {
             }).then(response => {
                 if (response.ok) {
                     // 게시판 다시 생성
-                    let board_code = ($('#board-title').data('board-code').trim());
+                    let board_code = ($('#board-title').data('board-code'));
                     createBoard(board_code);
-                    return 1;
-                } else {
-                    return 0;
                 }
             });
         }
@@ -148,12 +145,20 @@ const fetchAndDisplayBoard = (code, page, search = '', kind = '') => {
             const tbody = $(`#list-${code} tbody`);
             tbody.empty();
 
+            if(!data.roleCheck && code===1){
+                $('#create-board').attr('hidden', true);
+            }else {
+                $('#create-board').attr('hidden', false);
+            }
+
             if (data.boardList.length === 0) {
                 // 검색 결과가 없을 때 처리
                 const noResultRow = `<tr><td colspan="5">검색 결과가 없습니다.</td></tr>`;
                 tbody.append(noResultRow);
                 return;
             }
+
+
 
             // 테이블에 데이터 추가
             data.boardList.forEach(item => {
@@ -238,7 +243,26 @@ const createBoard = async (board_code) => {
                 uploadSummerImg(files[0]);
             }
         }
+
     });
+    const uploadSummerImg = (file)=>{
+        let imgForm = new FormData;
+        imgForm.append("file",file);
+
+        fetch('board/upload/image',{
+            method: 'POST',
+            body: imgForm
+        }).then((response) => {
+            // 서버에서 이미지 URL을 받아옴
+            return response.text(); // JSON 형태의 응답을 파싱
+        }).then((data) => {
+            const imgUrl = data; // 서버에서 받은 이미지 URL
+            console.log(imgUrl)
+            const imgNode = document.createElement('img');
+            imgNode.src = imgUrl;
+            $('.summernote').summernote('insertNode', imgNode);
+        })
+    }
 
     // 첨부 파일 처리 및 관련 이벤트 핸들러 설정
     let attachmentCounter = $('#files .attached-index').length;

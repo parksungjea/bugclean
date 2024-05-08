@@ -7,7 +7,8 @@
 <head>
 	<link rel="stylesheet" href="/bugclean/css/customerCreate.css"/>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+	<title>BUGCLEAN</title>
+	<link rel="icon" type="image/x-icon" href="/bugclean/favicon.ico">
 </head>
 <c:import url="../temp/css.jsp"></c:import>
 <body>

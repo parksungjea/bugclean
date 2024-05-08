@@ -10,7 +10,9 @@
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Focus - Bootstrap Admin Dashboard</title>
+	<title>BUGCLEAN</title>
+	<link rel="icon" type="image/x-icon" href="/bugclean/favicon.ico">
+
 <!-- Favicon icon -->
 <c:import url="../temp/css.jsp"></c:import>
 <link rel="stylesheet" href="/bugclean/css/draft/basisdraftmodal.css">

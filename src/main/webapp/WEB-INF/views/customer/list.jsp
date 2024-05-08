@@ -6,7 +6,9 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+
+<title>BUGCLEAN</title>
+	<link rel="icon" type="image/x-icon" href="/bugclean/favicon.ico">
 
 <link rel="stylesheet" href="/bugclean/css/customerList.css" type="text/css" />
 </head>
@@ -112,7 +114,7 @@
 																			</a>
 																		</td>
 																	</c:if>
-																	<c:if test="${info.DEP_NAME ne '영업팀' && info.DEP_NAME eq '사업부'}">
+																	<c:if test="${info.DEP_NAME ne '영업팀' && info.DEP_NAME ne '사업부'}">
 																		<td class="td_business_name">${li.business_Name}</td>
 																	</c:if>
 																	<td class="td_ceo_name display_none">${li.ceo_Name}</td>

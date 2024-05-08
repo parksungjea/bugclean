@@ -29,7 +29,6 @@ public class ChatService {
 	//방 생성 및 해당 방에 인원 추가
 	public int createRoom(ChatRoom chatRoom) throws Exception{
 		int result = chatDAO.createRoom(chatRoom);
-		System.out.println("service == "+ chatRoom);
 		String roomId = chatRoom.getRoom_num();
 		String user1 = roomId.substring(0, 7);
 		String user2 = roomId.substring(7);
@@ -104,15 +103,12 @@ public class ChatService {
 	
 	public ChatMessage getLastMessage(ChatMemberVO chatMemberVO) throws Exception{
 		ChatMessage chatMessage = new ChatMessage();
-		System.out.println("get last msg null  ??? " + chatMessage);
 		chatMessage = chatDAO.getLastMessage(chatMemberVO);
 		if(chatMessage ==null ) {
-			System.out.println("is null");
 			chatMessage.setEmployee_num(chatMemberVO.getRoom_num());
 			chatMessage.setMsg_contents("0");
 			chatMessage.setRoom_num(chatMemberVO.getRoom_num());;
 		}
-		System.out.println("get last msg == \n "+chatMessage);
 		return chatMessage;
 	}
 	

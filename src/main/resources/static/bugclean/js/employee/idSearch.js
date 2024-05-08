@@ -1,4 +1,3 @@
-//console.log('연결');
 
 const searchBtn = document.getElementById("searchBtn");
 let name = document.getElementById("name");

@@ -109,12 +109,12 @@ WHERE not  car_code IN (
         AND
         BOOKING_DONE <![CDATA[<=]]>  TO_DATE(#{booking_done}, 'YYYY-MM-DD HH24:MI:SS'))
        )
-      	AND CAR_TYPE =5
+      	AND CAR_TYPE =5 AND cd.CAR_STATUS =0
     </select>
 
     <!-- 차량 현재 상태를 변경 // 배차 요청시 & 배차 거절시 -->
     <update id="updateStatus" parameterType="CarDetailVO">
-        UPDATE CAR_DETAIL SET CAR_STATUS = #{car_status} WHERE CAR_CODE = #{car_code}
+        UPDATE CAR_DETAIL SET CAR_STATUS = 0 WHERE CAR_CODE = #{car_code}
     </update>
 
     <!-- 배차 요청 등록  -->

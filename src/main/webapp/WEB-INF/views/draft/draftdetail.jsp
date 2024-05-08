@@ -617,7 +617,8 @@
 											</c:if> --%>
 										</div>
 									</c:if>
-									<c:if test="${employeeNum == nowemp }">
+									<c:if test="${draftmap.STATE ne 1}">
+									<c:if test="${employeeNum == nowemp}">
 										<div id="updateBtn"
 											style="position: absolute; left: -1px; bottom: -40px;">
 											<button type="submit" name="state" value="0"
@@ -632,6 +633,7 @@
 												style="width: 90px" data-delete-emp="${draftmap.DRAFT_NUM}"
 												class="btn btn-pinterest">반려하기</button>
 										</div>
+									</c:if>
 									</c:if>
 								</c:if>
 								<!-- 반려일때 -->
